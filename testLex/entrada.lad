@@ -1,0 +1,5 @@
+(U-u)>>
+	// teste comentario
+	lad_out("BEM VINDO A LINGUAGEM LAD, LAD ONDE? DE GELSON! ", lad_line);
+	lad_out("Quer saber se um número é primo? ", lad_line);
+<<(U-u)
