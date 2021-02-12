@@ -7,7 +7,7 @@ function sendTestLexicalAnalyser(ind){
 
   axios({
       method: 'get',
-      url: 'http://localhost:5000/lexical',
+      url: 'http://localhost:5001/lexical',
       data: {
         lexicalAnalyser: lexicalAnalyser,
         code: codeExample,
@@ -27,7 +27,7 @@ function sendTestSintaticalAnalyser(ind){
 
   axios({
       method: 'get',
-      url: 'http://localhost:5000/sintatical',
+      url: 'http://localhost:5001/sintatical',
       data: {
         lexicalAnalyser: lexicalAnalyser,
         sintaticalAnalyser: sintaticalAnalyser,
