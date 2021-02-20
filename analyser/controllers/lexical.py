@@ -1,5 +1,6 @@
 import os
 from controllers.util import Util
+from multiprocessing import Process, Queue
 
 class LexicalExecution:
     def __init__(self, lexicalAnalyser, code, hashId):
@@ -7,7 +8,12 @@ class LexicalExecution:
         self.code = code
         self.hashId = hashId
 
+    def exec_c(self, q):
+        sucess = os.system(f'cd {self.hashId} && gcc lex.yy.c -o myCompiler -lfl 2> errorC > cOut && ./myCompiler > retorno.txt')
+        q.put(sucess)
+
     def execute(self):
+        q = Queue()
         lexicalFileName = f'{self.hashId}.l'
         codeFileName = f'{self.hashId}.code'
         if os.system(f'mkdir {self.hashId}') != 0:
@@ -30,7 +36,17 @@ class LexicalExecution:
             return {'status': False, 'message': 'Error trying to execute the os library.'}
 
         # run c code created by FLEX
-        sucess = os.system(f'cd {self.hashId} && gcc lex.yy.c -o myCompiler -lfl 2> errorC > cOut && ./myCompiler > retorno.txt')
+        proc = Process(target=LexicalExecution.exec_c, args=(self,q))
+        proc.start()
+        proc.join(5)
+
+        if proc.is_alive():
+            proc.terminate()
+            proc.join()
+            Util.deleteFolder(self, self.hashId)
+            return {'success':False, 'message':'Timeout exceeded'}, 408
+
+        sucess = q.get()
         ret = Util.fileToString(self, self.hashId, 'errorC', ret, 'errorC')
         ret = Util.fileToString(self, self.hashId, 'cOut', ret, 'cOut')
         if sucess == 0:
@@ -41,3 +57,4 @@ class LexicalExecution:
 
         Util.deleteFolder(self, self.hashId)
         return ret
+

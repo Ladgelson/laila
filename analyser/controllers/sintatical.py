@@ -1,5 +1,6 @@
 import os
 from controllers.util import Util
+from multiprocessing import Process, Queue
 
 class SintaticalExecution:
     def __init__(self, lexicalAnalyser, sintaticalAnalyser, util, code, hashId):
@@ -9,7 +10,12 @@ class SintaticalExecution:
         self.code = code
         self.hashId = hashId
 
+    def exec_c(self, q):
+        sucess = os.system(f'cd {self.hashId} && gcc sintatical.tab.c -o analisador -lfl -lm 2> errorC > warning && ./analisador > retorno.txt ')
+        q.put(sucess)
+
     def execute(self):
+        q = Queue()
         lexicalFileName = f'{self.hashId}.l'
         sintaticalFileName = f'{self.hashId}.y'
         codeFileName = f'{self.hashId}.code'
@@ -53,7 +59,17 @@ class SintaticalExecution:
             return ret
         
         # run c code genereted by bison
-        sucess = os.system(f'cd {self.hashId} && gcc sintatical.tab.c -o analisador -lfl -lm 2> errorC > warning && ./analisador > retorno.txt ')
+        proc = Process(target=SintaticalExecution.exec_c, args=(self,q))
+        proc.start()
+        proc.join(5)
+
+        if proc.is_alive():
+            proc.terminate()
+            proc.join()
+            Util.deleteFolder(self, self.hashId)
+            return {'success':False, 'message':'Timeout exceeded'}, 408
+
+        sucess = q.get()
         ret = Util.fileToString(self, self.hashId, 'errorC', ret, 'errorC')
         ret = Util.fileToString(self, self.hashId, 'warning', ret, 'cOut')
         if sucess == 0:
