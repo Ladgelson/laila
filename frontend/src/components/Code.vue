@@ -27,7 +27,6 @@ export default {
     },
     watch: {
         code(val) {
-            console.log('AQUI333')
             this.$emit('changeCode', {
                 code: val,
                 type: this.codeType

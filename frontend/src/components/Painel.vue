@@ -1,18 +1,18 @@
 <template>
     <div class="container-fluid">
         <div class="row">
-            <Code v-on:changeCode="addCode" class="col-sm" placeholder="FLEX Code" codeType="flex"/>
-            <Code v-on:changeCode="addCode" class="col-sm" placeholder="Bison Code" codeType="bison"/>
-            <Code v-on:changeCode="addCode" class="col-sm" placeholder="Test Code" codeType="test"/> 
+            <CodeGeneration v-on:changeCode="addCode" class="col-sm" placeholder="FLEX Code" codeType="flex"/>
+            <CodeGeneration v-on:changeCode="addCode" class="col-sm" placeholder="Bison Code" codeType="bison"/>
+            <CodeGeneration v-on:changeCode="addCode" class="col-sm" placeholder="Test Code" codeType="test"/> 
         </div>
     </div>
 </template>
 
 <script>
-import Code from './Code.vue'
+import CodeGeneration from './CodeGeneration.vue'
 export default {
     components: {
-        Code
+        CodeGeneration
     },
     data(){
         return {
@@ -31,6 +31,16 @@ export default {
             if(obj.type == 'test')
                 this.testCode = obj.code
         },
+        async sendFlexCode(){
+            try {
+                this.users = await this.$rest.employees.findAll()
+                this.load = false
+            } catch(err) {
+                console.error(err)
+                this.load = false
+                this.error = true
+            }
+        }
     }
 }
 </script>
