@@ -1,6 +1,5 @@
 <template>
     <div class="container-fluid">
-        <h1>{{placeholder}}</h1>
         <codemirror 
             v-model="code"
             :options="cmOptions"

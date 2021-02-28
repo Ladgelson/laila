@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <h1>LAILA - Lexical And sIntaticaL Analyser online</h1>
-    <hr />
     <Painel/>
-    <button v-on:click="addCode" type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </template>
 
