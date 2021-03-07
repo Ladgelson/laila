@@ -3,10 +3,9 @@ from controllers.util import Util
 from multiprocessing import Process, Queue
 
 class SintaticalExecution:
-    def __init__(self, lexicalAnalyser, sintaticalAnalyser, util, code, hashId):
+    def __init__(self, lexicalAnalyser, sintaticalAnalyser, code, hashId):
         self.lexicalAnalyser = lexicalAnalyser
         self.sintaticalAnalyser = sintaticalAnalyser
-        self.util = util
         self.code = code
         self.hashId = hashId
 
@@ -19,7 +18,6 @@ class SintaticalExecution:
         lexicalFileName = f'{self.hashId}.l'
         sintaticalFileName = f'{self.hashId}.y'
         codeFileName = f'{self.hashId}.code'
-        utilFileName = 'util.h'
         if os.system(f'mkdir {self.hashId}') != 0:
             os.system(f'rm -rf {self.hashId}')
             os.system(f'mkdir {self.hashId}')
@@ -31,11 +29,6 @@ class SintaticalExecution:
         
         # write sintaticalAnalyser
         ret = Util.writeFile(self,f'{self.hashId}/sintatical.y', self.sintaticalAnalyser)
-        if ret['status'] == False:
-            return ret
-
-        # write sintaticalAnalyser
-        ret = Util.writeFile(self,f'{self.hashId}/util.h', self.util)
         if ret['status'] == False:
             return ret
 

@@ -16,17 +16,55 @@ import 'codemirror/theme/dracula.css'
 export default {
     props: {
         placeholder: String,
-        codeType: String
+        codeType: String,
     },
     methods: {
         onCmCodeChange(newCode) {
-            console.log('this is new code', newCode)
             this.code = newCode
+        },
+        selectInitialCode(codeType){
+            console.log('AQUI',codeType)
+            if(codeType == 'flex') return `
+/*
+
+    Here you can put your FLEX code.
+
+*/
+
+// the function main is required and cannot be changed
+int main(){
+	yyin = fopen("code","r");
+	yylex();
+	fclose(yyin);
+return 0;
+}
+
+`;
+            if(codeType == 'bison') return `
+/*
+
+    Here you can put your Bison code.
+
+*/
+
+// the function main is required and cannot be changed
+#include "lex.yy.c"
+
+int main(){
+	yyin=fopen("entrada.lad","r");
+	yyparse();
+	yylex();
+	fclose(yyin);
+return 0;
+}
+
+`;
+            return '';
         }
     },
     data(){ 
         return {
-            code: 'int a = 10;',
+            code: this.selectInitialCode(this.codeType),
             cmOptions: {
                 // codemirror options
                 tabSize: 4,

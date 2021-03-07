@@ -1,35 +1,40 @@
 <template>
     <div class="container-fluid">
-        <ButtonGroup v-on:changeIde="changeIde"/>
+        <Nav/>
+        <div class="buttons row">
+            <ButtonGroup class="col-11" :type="id" v-on:changeIde="changeIde"/>
+            <button v-on:click="sendCode" type="submit" class="buttonSend col-1 btn btn-primary">Enviar</button>
+        </div>
         <div class="row">
-            <CodeGeneration v-on:changeCode="addCode" v-show="ides[0]" v-bind:class="{'col-8':terminalVisibility}" codeType="flex"/>
-            <CodeGeneration v-on:changeCode="addCode" v-show="ides[1]" v-bind:class="{'col-8':terminalVisibility}" codeType="bison"/>
-            <CodeGeneration v-on:changeCode="addCode" v-show="ides[2]" v-bind:class="{'col-8':terminalVisibility}" codeType="test"/> 
+            <CodeGeneration v-on:changeCode="addCode" v-show="ides[0]" class="col-8 code" codeType="flex"/>
+            <CodeGeneration v-on:changeCode="addCode" v-show="ides[1]" class="col-8 code" codeType="bison"/>
+            <CodeGeneration v-on:changeCode="addCode" v-show="ides[2]" class="col-8 code" codeType="test"/> 
+            <CodeGeneration v-on:changeCode="addCode" v-show="ides[3]" class="col-8 code" codeType="entrada"/> 
             <codemirror 
-                v-if="terminalVisibility"
                 class="col-4"
                 v-model="result"
                 :options="cmOptions"
                 @input="onCmCodeChange"
-                style="CodeMirror"
                 />
         </div>
-        <button v-on:click="sendFlexCode" type="submit" class="btn btn-primary">Enviar</button>
     </div>
 </template>
 
 <script>
 import 'codemirror/mode/clike/clike'
-import 'codemirror/theme/dracula.css'
+import 'codemirror/theme/lesser-dark.css'
 import CodeGeneration from './CodeGeneration.vue'
 import ButtonGroup from './ButtonGroup.vue'
+import Nav from './Nav.vue'
 export default {
     components: {
         ButtonGroup,
-        CodeGeneration
+        CodeGeneration,
+        Nav
     },
     data(){
         return {
+            id: this.$route.params.id,
             flexCode: '',
             bisonCode: '',
             auxCode: '',
@@ -40,7 +45,7 @@ export default {
                 tabSize: 4,
                 mode: 'text/x-csrc',
                 highlightDifferences: true,
-                theme: 'dracula',
+                theme: 'lesser-dark',
                 lineNumbers: true,
                 line: true,
             },
@@ -67,22 +72,40 @@ export default {
         changeIde(obj){
             this.ides = obj.ides
         },
-        async sendFlexCode(){
+        async sendCode(){
             try {
-                const ret = await this.$rest.lexical.findAll(
-                    {
-                        'lexicalAnalyser': this.flexCode,
-                        'code': this.testCode,
-                        'hash': "1"
+                let ret;
+                console.log(this.$rest)
+                if(this.id == 'lexical'){
+                    ret = await this.$rest.lexical.findAll(
+                        {
+                            'lexicalAnalyser': this.flexCode,
+                            'code': this.testCode,
+                            'hash': "1"
+                        }
+                    ) 
+                } 
+                if(this.id == 'sintatical'){
+                    ret = await this.$rest.sintatical.findAll(
+                        {
+                            'lexicalAnalyser': this.flexCode,
+                            'sintaticalAnalyser': this.bisonCode,
+                            'code': this.testCode,
+                            'hash': "1"
+                        }
+                    )
+                    console.log(ret)
+                    if(ret["status"]){
+                        this.result = ret.warning + '\n';
+                        this.result += ret.return;
+                    } else {
+                        this.result = ret.message;
+                        this.result += ret.warning;
                     }
-                )
+                }
                 console.log(ret)
-                this.result = ret["return"]
-                this.terminalVisibility = true
             } catch(err) {
                 console.error(err)
-                // this.load = false
-                // this.error = true
             }
         }
     }
@@ -90,4 +113,26 @@ export default {
 </script>
 
 <style>
+.code .CodeMirror{
+    height: 500px;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+.buttonSend {
+    background-color: #8605B8;
+    border-color: #8605B8;
+    color: white;
+}
+
+.buttonSend:hover {
+    border-color: black;
+    background-color: #8605B8;
+}
+
+.buttons {
+    margin-top: 10px;
+}
 </style>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueCodemirror from 'vue-codemirror';
+import router from './router'
 // Service
 import * as rest from "./services";
  
@@ -13,5 +14,6 @@ Vue.prototype.$rest = rest
 Vue.use(VueCodemirror,)
 
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')

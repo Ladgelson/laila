@@ -3,7 +3,7 @@
         <li class="nav-item">
             <a v-on:click="selectIde(0)" class="nav-link" v-bind:class="{active: ides[0]}" href="#">FLEX Code</a>
         </li>
-        <li class="nav-item">
+        <li v-if="type == 'sintatical'" class="nav-item">
             <a v-on:click="selectIde(1)" class="nav-link" v-bind:class="{active: ides[1]}" href="#">Bison Code</a>
         </li>
         <li class="nav-item">
@@ -17,6 +17,9 @@
 
 <script>
 export default {
+    props: {
+        type: String,
+    },
     data(){
         return {
             selected: '',
@@ -31,7 +34,6 @@ export default {
     methods: {
         selectIde(index){
             this.deactivateAll()
-            console.log(index)
             this.ides[index] = true
         },
         deactivateAll(){
@@ -51,3 +53,24 @@ export default {
     }
 }
 </script>
+
+<style>
+
+.nav-tabs .nav-link.active {
+    background-color: #282A36;
+    color: white
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: -2px;
+}
+
+.nav-tabs {
+    padding: 0px;
+}
+
+a.nav-link {
+    color: black;
+}
+
+</style>
