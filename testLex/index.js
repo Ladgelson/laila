@@ -23,15 +23,15 @@ function sendTestSintaticalAnalyser(ind){
   const lexicalAnalyser = fs.readFileSync("lexico.l", 'utf-8');
   const sintaticalAnalyser = fs.readFileSync("sintatico.y", 'utf-8');
   const codeExample = fs.readFileSync("entrada.lad", 'utf-8');
-  const util = fs.readFileSync("util.h", 'utf-8');
+  //const util = fs.readFileSync("util.h", 'utf-8');
 
   axios({
       method: 'get',
-      url: 'http://localhost:5000/sintatical',
+      url: 'http://200.129.3.5:8081/sintatical',
       data: {
         lexicalAnalyser: lexicalAnalyser,
         sintaticalAnalyser: sintaticalAnalyser,
-        util: util,
+        //util: util,
         code: codeExample,
         hash: ""+ind
       }

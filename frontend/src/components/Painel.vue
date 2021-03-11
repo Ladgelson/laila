@@ -6,12 +6,15 @@
             <button v-on:click="sendCode" type="submit" class="buttonSend col-1 btn btn-primary">Enviar</button>
         </div>
         <div class="row">
-            <CodeGeneration v-on:changeCode="addCode" v-show="ides[0]" class="col-8 code" codeType="flex"/>
-            <CodeGeneration v-on:changeCode="addCode" v-show="ides[1]" class="col-8 code" codeType="bison"/>
-            <CodeGeneration v-on:changeCode="addCode" v-show="ides[2]" class="col-8 code" codeType="test"/> 
-            <CodeGeneration v-on:changeCode="addCode" v-show="ides[3]" class="col-8 code" codeType="entrada"/> 
+            <CodeGeneration v-on:changeCode="addCode" v-show="ides[0]" class="col code" codeType="flex"/>
+            <CodeGeneration v-on:changeCode="addCode" v-show="ides[1]" class="col code" codeType="bison"/>
+            <CodeGeneration v-on:changeCode="addCode" v-show="ides[2]" class="col code" codeType="test"/> 
+            <CodeGeneration v-on:changeCode="addCode" v-show="ides[3]" class="col code" codeType="entrada"/> 
+        </div>
+        <span>Terminal</span>
+        <div class="row">
             <codemirror 
-                class="col-4"
+                class="terminal col"
                 v-model="result"
                 :options="cmOptions"
                 @input="onCmCodeChange"
@@ -114,7 +117,17 @@ export default {
 
 <style>
 .code .CodeMirror{
-    height: 500px;
+    height: 300px;
+}
+
+.terminal .CodeMirror{
+    height: 200px;
+    width: 100%;    
+}
+
+div.vue-codemirror.terminal.col {
+    padding: 0px 15px 0px 0px;
+    margin: 0px;
 }
 
 .container-fluid {
@@ -123,7 +136,7 @@ export default {
 
 .buttonSend {
     background-color: #8605B8;
-    border-color: #8605B8;
+    border-color: black;
     color: white;
 }
 
@@ -134,5 +147,9 @@ export default {
 
 .buttons {
     margin-top: 10px;
+}
+
+.row {
+    margin: 0px;
 }
 </style>

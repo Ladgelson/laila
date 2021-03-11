@@ -15,7 +15,7 @@ class Lexical(Resource):
             'hash': dados["hash"]
         }
 
-        resp = requests.get('http://localhost:5000/lexical', json=obj)
+        resp = requests.get('http://localhost:80/lexical', json=obj)
         if resp.status_code != 200:
             return {'message': 'Something went wrong!'}, 500
 

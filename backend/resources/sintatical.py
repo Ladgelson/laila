@@ -17,7 +17,7 @@ class Sintatical(Resource):
             'hash': dados["hash"]
         }
 
-        resp = requests.get('http://localhost:5000/sintatical', json=obj)
+        resp = requests.get('http://localhost:80/sintatical', json=obj)
         if resp.status_code != 200:
             return {'message': 'Something went wrong!'}, 500
 
