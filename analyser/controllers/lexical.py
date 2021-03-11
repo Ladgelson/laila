@@ -1,3 +1,4 @@
+#!/bin/python
 import os
 from controllers.util import Util
 from multiprocessing import Process, Queue
