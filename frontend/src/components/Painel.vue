@@ -51,6 +51,7 @@ export default {
                 theme: 'lesser-dark',
                 lineNumbers: true,
                 line: true,
+                readOnly: true
             },
             ides: [
                 true,
@@ -78,26 +79,27 @@ export default {
         async sendCode(){
             try {
                 let ret;
-                console.log(this.$rest)
+                let objToSend = {
+                    'lexicalAnalyser': this.flexCode,
+                    'sintaticalAnalyser': this.bisonCode,
+                    'code': this.testCode,
+                    'hash': "1"
+                }
+                console.log(objToSend)
                 if(this.id == 'lexical'){
-                    ret = await this.$rest.lexical.findAll(
-                        {
-                            'lexicalAnalyser': this.flexCode,
-                            'code': this.testCode,
-                            'hash': "1"
+                    ret = await this.$rest.lexical.create(objToSend);
+                    if(this.id == 'lexical'){
+                        this.result = ret.cOut;
+                        this.result += ret.errorC;
+                        if(ret["status"]){
+                            this.result += ret.return;
+                        } else {
+                            this.result += ret.message;
                         }
-                    ) 
-                } 
+                    }
+                }
                 if(this.id == 'sintatical'){
-                    ret = await this.$rest.sintatical.findAll(
-                        {
-                            'lexicalAnalyser': this.flexCode,
-                            'sintaticalAnalyser': this.bisonCode,
-                            'code': this.testCode,
-                            'hash': "1"
-                        }
-                    )
-                    console.log(ret)
+                    ret = await this.$rest.sintatical.create(objToSend)
                     if(ret["status"]){
                         this.result = ret.warning + '\n';
                         this.result += ret.return;
@@ -106,6 +108,13 @@ export default {
                         this.result += ret.warning;
                     }
                 }
+                // if(ret["status"]){
+                //     this.result = ret.warning + '\n';
+                //     this.result += ret.return;
+                // } else {
+                //     this.result = ret.message;
+                //     this.result += ret.warning;
+                // }
                 console.log(ret)
             } catch(err) {
                 console.error(err)
@@ -135,14 +144,16 @@ div.vue-codemirror.terminal.col {
 }
 
 .buttonSend {
-    background-color: #8605B8;
-    border-color: black;
+    background-color: #323031;
+    border-color: #323031;
     color: white;
 }
 
 .buttonSend:hover {
-    border-color: black;
-    background-color: #8605B8;
+    border-color: #323031;
+    background-color: #0FBBE6;
+    color: black;
+    font-weight: bold;
 }
 
 .buttons {

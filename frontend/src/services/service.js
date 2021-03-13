@@ -61,7 +61,7 @@ export class Service {
       )
     }
 
-    delete data.id
+    // delete data.id
     return this.request
       .post("", data, {
         params,

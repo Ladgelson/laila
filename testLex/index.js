@@ -1,13 +1,19 @@
 const axios = require("axios").default;
 const fs = require("fs");
 
+const env = {
+  'analyser': 'http://0.0.0.0:5000',
+  'dev': 'http://0.0.0.0:5001',
+  'prod': 'http://200.129.3.5:8081/lexical',
+}
+
 function sendTestLexicalAnalyser(ind){
   const lexicalAnalyser = fs.readFileSync("myLex.l", 'utf-8');
   const codeExample = fs.readFileSync("main.lad", 'utf-8');
 
   axios({
-      method: 'get',
-      url: 'http://200.129.3.5:8081/lexical',
+      method: 'post',
+      url: env.dev+"/lexical",
       data: {
         lexicalAnalyser: lexicalAnalyser,
         code: codeExample,
@@ -26,8 +32,8 @@ function sendTestSintaticalAnalyser(ind){
   //const util = fs.readFileSync("util.h", 'utf-8');
 
   axios({
-      method: 'get',
-      url: 'http://200.129.3.5:8081/sintatical',
+      method: 'post',
+      url: env.dev+'/sintatical',
       data: {
         lexicalAnalyser: lexicalAnalyser,
         sintaticalAnalyser: sintaticalAnalyser,
@@ -42,6 +48,6 @@ function sendTestSintaticalAnalyser(ind){
 }
 
 for(let i=0; i < 1; ++i){
-  sendTestLexicalAnalyser(i)
-  //sendTestSintaticalAnalyser(i)
+  //sendTestLexicalAnalyser(i)
+  sendTestSintaticalAnalyser(i)
 }

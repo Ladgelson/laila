@@ -4,6 +4,7 @@
             v-model="code"
             :options="cmOptions"
             @input="onCmCodeChange"
+            @beforeChange="onCmBlockLastLines"
             style="CodeMirror"
             />
     </div>
@@ -22,8 +23,14 @@ export default {
         onCmCodeChange(newCode) {
             this.code = newCode
         },
+        onCmBlockLastLines(cm, change){
+            if(this.codeType == 'flex' || this.codeType == 'bison'){
+                if(cm.lineCount()-11 <= change.from.line){
+                    change.cancel();
+                }
+            }
+        },
         selectInitialCode(codeType){
-            console.log('AQUI',codeType)
             if(codeType == 'flex') return `
 /*
 
@@ -31,15 +38,17 @@ export default {
 
 */
 
-// the function main is required and cannot be changed
+/*
+
+    The function main is required and cannot be changed
+
+*/
 int main(){
 	yyin = fopen("code","r");
 	yylex();
 	fclose(yyin);
 return 0;
-}
-
-`;
+}`;
             if(codeType == 'bison') return `
 /*
 
@@ -47,7 +56,8 @@ return 0;
 
 */
 
-// the function main is required and cannot be changed
+// The function main is required and cannot be changed
+
 #include "lex.yy.c"
 
 int main(){
@@ -56,9 +66,7 @@ int main(){
 	yylex();
 	fclose(yyin);
 return 0;
-}
-
-`;
+}`;
             return '';
         }
     },
@@ -73,6 +81,7 @@ return 0;
                 theme: 'dracula',
                 lineNumbers: true,
                 line: true,
+                autoRefresh:true,
             }   
         }
     },

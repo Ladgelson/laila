@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>	
-
-*
+/*
 TIPOS DE VARIAVEIS DENTRO DE LISTA DE VARIAVEIS
 0 -> INTEIRO
 1 -> PONTO FLUTUANTE
@@ -663,7 +662,6 @@ double eval(Ast *a){
     }
     return v;
 }
-
 
 int yylex();
 void yyerror (char *s){

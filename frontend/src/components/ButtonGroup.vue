@@ -1,16 +1,16 @@
 <template>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a v-on:click="selectIde(0)" class="nav-link" v-bind:class="{active: ides[0]}" href="#">FLEX Code</a>
+            <a v-on:click="selectIde(0)" class="nav-link" v-bind:class="{active: ides[0]}" >FLEX Code</a>
         </li>
         <li v-if="type == 'sintatical'" class="nav-item">
-            <a v-on:click="selectIde(1)" class="nav-link" v-bind:class="{active: ides[1]}" href="#">Bison Code</a>
+            <a v-on:click="selectIde(1)" class="nav-link" v-bind:class="{active: ides[1]}" >Bison Code</a>
         </li>
         <li class="nav-item">
-            <a v-on:click="selectIde(2)" class="nav-link" v-bind:class="{active: ides[2]}" href="#">Test Code</a>
+            <a v-on:click="selectIde(2)" class="nav-link" v-bind:class="{active: ides[2]}" >Test Code</a>
         </li>
         <li class="nav-item">
-            <a v-on:click="selectIde(3)" class="nav-link" v-bind:class="{active: ides[3]}" href="#">Entrada</a>
+            <a v-on:click="selectIde(3)" class="nav-link" v-bind:class="{active: ides[3]}" >Entrada</a>
         </li>
     </ul>
 </template>
@@ -65,12 +65,20 @@ export default {
     margin-bottom: -2px;
 }
 
+
 .nav-tabs {
     padding: 0px;
 }
 
-a.nav-link {
+a.nav-link.active {
     color: black;
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+}
+
+a.nav-link.active:hover{
+    color: white;
+    background-color: #45495E;
 }
 
 </style>

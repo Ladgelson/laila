@@ -4,7 +4,7 @@
         <div class="row mainInfo align-items-center">
             <div class="col ">
                 <div class="row justify-content-end align-items-center" >
-                    <img src="https://previews.123rf.com/images/yuzach/yuzach1607/yuzach160700007/60379520-cute-black-cat-in-flat-style-with-funny-cartoon-square-head.jpg" />
+                    <img src="./../assets/cat-svgrepo-com.svg" />
                 </div>
             </div>
             <div class="col ">
@@ -33,6 +33,21 @@
                         <button class="btn btn-primary" type="submit">Lexical and Sintatical Analyser</button>
                     </router-link>
                 </div>
+            </div>
+        </div>
+        <div class="row justify-content-end align-items-end container-fluid">
+            <div>
+                <div class="col  infoProfile">
+                    <div class="nameProfile">
+                        Micaías Ladgelson
+                    </div>
+                    <div>
+                        Estudante no Instituto Federal do Ceará - Campus Aracati
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img class="imgProfile" alt="img" src="./../assets/ladgelson.jpg" />
             </div>
         </div>
     </div>
@@ -96,13 +111,30 @@ img {
 
 .button-group button{
     margin-left: 20px;
-    background-color: #8605B8;
-    border-color: #8605B8;
+    background-color: #323031;
+    border-color: #323031;
 }
 
 .button-group button:hover{
-    background-color: #8c21b5;
-    border-color: #8c21b5;
+    background-color: #0FBBE6;
+    border-color: #0FBBE6;
+    color: black;
+    font-weight: bold;  
+}
+
+.imgProfile {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+}
+
+.infoProfile {
+    padding: 10px 10px 10px 0;
+}
+
+.nameProfile {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 </style>

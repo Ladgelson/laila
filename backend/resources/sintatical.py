@@ -1,23 +1,20 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource
+from flask import request
 import requests
 
 class Sintatical(Resource): 
-    args = reqparse.RequestParser()
-    args.add_argument('lexicalAnalyser',type=str, required=True, help="The field 'lexicalAnalyser' is required.")
-    args.add_argument('sintaticalAnalyser',type=str, required=True, help="The field 'sintaticalAnalyser' is required.")
-    args.add_argument('code',type=str, required=True, help="The field 'code' is required.")
-    args.add_argument('hash',type=str, required=True, help="The field 'hash' is required.")
-
-    def get(self):
-        dados = Sintatical.args.parse_args()
+    def post(self):
+        data = request.get_json()
+        uniqueId = request.environ.get("HTTP_X_REQUEST_ID")
         obj = {
-            'lexicalAnalyser': dados["lexicalAnalyser"],
-            'sintaticalAnalyser': dados["sintaticalAnalyser"],
-            'code': dados["code"],
-            'hash': dados["hash"]
+            'lexicalAnalyser': data["lexicalAnalyser"],
+            'sintaticalAnalyser': data["sintaticalAnalyser"],
+            'code': data["code"],
+            'hash': uniqueId
         }
 
-        resp = requests.get('http://localhost:80/sintatical', json=obj)
+        # resp = requests.post('http://localhost:80/sintatical', json=obj)
+        resp = requests.post('http://0.0.0.0:5000/sintatical', json=obj)
         if resp.status_code != 200:
             return {'message': 'Something went wrong!'}, 500
 
