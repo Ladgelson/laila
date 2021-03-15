@@ -88,6 +88,7 @@ export default {
                 console.log(objToSend)
                 if(this.id == 'lexical'){
                     ret = await this.$rest.lexical.create(objToSend);
+                    console.log(ret);
                     if(this.id == 'lexical'){
                         this.result = ret.cOut;
                         this.result += ret.errorC;
@@ -100,6 +101,7 @@ export default {
                 }
                 if(this.id == 'sintatical'){
                     ret = await this.$rest.sintatical.create(objToSend)
+                    console.log(ret);
                     if(ret["status"]){
                         this.result = ret.warning + '\n';
                         this.result += ret.return;
