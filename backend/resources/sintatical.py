@@ -14,7 +14,7 @@ class Sintatical(Resource):
         }
 
         # resp = requests.post('http://localhost:80/sintatical', json=obj)
-        resp = requests.post('http://0.0.0.0:5000/sintatical', json=obj)
+        resp = requests.post('http://200.129.3.5:80/sintatical', json=obj)
         if resp.status_code != 200:
             return {'message': 'Something went wrong!'}, 500
 
