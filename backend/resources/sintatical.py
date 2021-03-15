@@ -13,9 +13,9 @@ class Sintatical(Resource):
             'hash': uniqueId
         }
 
-        # resp = requests.post('http://localhost:80/sintatical', json=obj)
-        resp = requests.post('http://200.129.3.5:80/sintatical', json=obj)
-        if resp.status_code != 200:
+        resp = requests.post('http://0.0.0.0:80/sintatical', json=obj)
+        # resp = requests.post('http://200.129.3.5:80/sintatical', json=obj)
+        if resp.status_code > 202:
             return {'message': 'Something went wrong!'}, 500
 
         return resp.json(), 200
