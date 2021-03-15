@@ -14,7 +14,7 @@ class Lexical(Resource):
 
         resp = requests.get('http://0.0.0.0:80/lexical', json=obj)
         # resp = requests.post('http://200.129.3.5:80/lexical', json=obj)
-        if resp.status_code > 202:
-            return {'message': 'Something went wrong!'}, 500
+        # if resp.status_code > 202:
+        #     return {'message': 'Something went wrong!'}, 500
 
         return resp.json(), 200
