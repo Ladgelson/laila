@@ -10,7 +10,8 @@ class Sintatical(Resource):
         sintaticalAnalyser = data["sintaticalAnalyser"]
         code = data["code"]
         hashId = data["hash"]
+        input_ = data["input"]
 
-        sin = SintaticalExecution(lexicalAnalyser, sintaticalAnalyser, code, hashId)
+        sin = SintaticalExecution(lexicalAnalyser, sintaticalAnalyser, code, hashId, input_)
         ret = sin.execute()
         return ret, 200

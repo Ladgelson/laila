@@ -4,13 +4,14 @@ from controllers.util import Util
 from multiprocessing import Process, Queue
 
 class LexicalExecution:
-    def __init__(self, lexicalAnalyser, code, hashId):
+    def __init__(self, lexicalAnalyser, code, hashId, input_):
         self.lexicalAnalyser = lexicalAnalyser
         self.code = code
         self.hashId = hashId
+        self.input = input_
 
     def exec_c(self, q):
-        sucess = os.system(f'cd {self.hashId} && gcc lex.yy.c -o myCompiler -lfl 2> errorC > cOut && ./myCompiler > retorno.txt')
+        sucess = os.system(f'cd {self.hashId} && gcc lex.yy.c -o myCompiler -lfl 2> errorC > cOut && ./myCompiler < input > retorno.txt')
         q.put(sucess)
 
     def execute(self):
@@ -28,6 +29,11 @@ class LexicalExecution:
         
         # write code example
         ret = Util.writeFile(self,f'{self.hashId}/code', self.code)
+        if ret['status'] == False:
+            return ret
+
+        # write input example
+        ret = Util.writeFile(self,f'{self.hashId}/input', self.input)
         if ret['status'] == False:
             return ret
 

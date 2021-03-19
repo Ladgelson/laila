@@ -4,14 +4,15 @@ from controllers.util import Util
 from multiprocessing import Process, Queue
 
 class SintaticalExecution:
-    def __init__(self, lexicalAnalyser, sintaticalAnalyser, code, hashId):
+    def __init__(self, lexicalAnalyser, sintaticalAnalyser, code, hashId, input_):
         self.lexicalAnalyser = lexicalAnalyser
         self.sintaticalAnalyser = sintaticalAnalyser
         self.code = code
         self.hashId = hashId
+        self.input = input_
 
     def exec_c(self, q):
-        sucess = os.system(f'cd {self.hashId} && gcc sintatical.tab.c -o analisador -lfl -lm 2> errorC > warning && ./analisador > retorno.txt ')
+        sucess = os.system(f'cd {self.hashId} && gcc sintatical.tab.c -o analisador -lfl -lm 2> errorC > warning && ./analisador < input > retorno.txt ')
         q.put(sucess)
 
     def execute(self):
@@ -35,6 +36,11 @@ class SintaticalExecution:
 
         # write code example
         ret = Util.writeFile(self,f'{self.hashId}/entrada.lad', self.code)
+        if ret['status'] == False:
+            return ret
+
+        # write input file
+        ret = Util.writeFile(self,f'{self.hashId}/input', self.code)
         if ret['status'] == False:
             return ret
 

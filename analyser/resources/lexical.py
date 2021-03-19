@@ -9,7 +9,8 @@ class Lexical(Resource):
         lexicalAnalyser = data["lexicalAnalyser"]
         code = data["code"]
         hashId = data["hash"]
+        input_ = data["input"]
 
-        lex = LexicalExecution(lexicalAnalyser, code, hashId)
+        lex = LexicalExecution(lexicalAnalyser, code, hashId, input_)
         ret = lex.execute()
         return ret, 200

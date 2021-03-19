@@ -13,11 +13,12 @@ function sendTestLexicalAnalyser(ind){
 
   axios({
       method: 'post',
-      url: env.dev+"/lexical",
+      url: env.analyser+"/lexical",
       data: {
         lexicalAnalyser: lexicalAnalyser,
         code: codeExample,
-        hash: ""+ind
+        hash: ""+ind,
+        input: ""
       }
     })
     .then(function (response) {
@@ -33,13 +34,13 @@ function sendTestSintaticalAnalyser(ind){
 
   axios({
       method: 'post',
-      url: env.dev+'/sintatical',
+      url: env.analyser+'/sintatical',
       data: {
         lexicalAnalyser: lexicalAnalyser,
         sintaticalAnalyser: sintaticalAnalyser,
-        //util: util,
         code: codeExample,
-        hash: ""+ind
+        hash: ""+ind,
+        input: ""
       }
     })
     .then(function (response) {
