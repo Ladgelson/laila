@@ -2,7 +2,7 @@
     <div class="main ">
         <Nav/>
         <div class="row mainInfo align-items-center">
-            <div class="col ">
+            <div class="col logoImg">
                 <div class="row justify-content-end align-items-center" >
                     <img src="./../assets/cat-svgrepo-com.svg" />
                 </div>
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-end align-items-end container-fluid">
+        <div class="myInfo row justify-content-end align-items-end container-fluid">
             <div>
                 <div class="col  infoProfile">
                     <div class="nameProfile">
@@ -43,6 +43,17 @@
                     </div>
                     <div>
                         Estudante no Instituto Federal do Ceará - Campus Aracati
+                    </div>
+                    <div>
+                        Contato: micaiasladgelsondasilva@gmail.com
+                    </div>
+                    <div class="imgGroup">
+                        <a href="https://www.linkedin.com/in/micaiasladgelson/">
+                            <img class="iconLink" src="./../assets/linkedin.svg"/>
+                        </a>
+                        <a class="github" href="https://github.com/Ladgelson">
+                            <img class="iconLink" src="./../assets/logotipo-do-github.svg"/>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -123,9 +134,10 @@ img {
 }
 
 .imgProfile {
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
     border-radius: 10px;
+    margin-right: 20px;
 }
 
 .infoProfile {
@@ -135,6 +147,29 @@ img {
 .nameProfile {
     font-size: 20px;
     font-weight: bold;
+}
+
+.myInfo {
+    height: 28vh;
+}
+
+.iconLink {
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+}
+
+.imgGroup {
+    margin-top: 10px;
+}
+
+.github {
+    margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+    .logoImg {display: none}
+    .imgProfile {display: none}
 }
 
 </style>

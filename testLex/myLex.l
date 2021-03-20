@@ -83,7 +83,9 @@ INVALIDO .
     printf("STRING: %s\n", yytext);
 }
 {SAIDA} {
-    printf("OPERADOR DE ESCRITA: %s\n", yytext);
+    int a;
+    scanf("%d",&a);
+    printf("OPERADOR DE LEITURA: %d %s\n", a, yytext);
 }
 {LER} {
     printf("OPERADOR DE LEITURA: %s\n", yytext);

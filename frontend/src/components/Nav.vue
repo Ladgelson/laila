@@ -2,7 +2,7 @@
     <div>
         <ul class="nav blue">
             <li class="nav-item col-2 justify-content-start">
-                <a class="nav-link active" aria-current="page" href="#">
+                <a href="/">
                     <img class="navImg" src="./../assets/cat-svgrepo-com.svg" />
                 </a>
             </li>
@@ -20,6 +20,7 @@
     width: 45px;
     position: absolute;
     left: 15px;
+    top: 5px;
     border-radius: 20px;
 }
 

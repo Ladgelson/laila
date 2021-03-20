@@ -18,10 +18,11 @@ export default {
     props: {
         placeholder: String,
         codeType: String,
+        type: String
     },
     methods: {
         onCmCodeChange(newCode) {
-            this.code = newCode
+            this.code = newCode;
         },
         onCmBlockLastLines(cm, change){
             if(this.codeType == 'flex' || this.codeType == 'bison'){
@@ -31,7 +32,9 @@ export default {
             }
         },
         selectInitialCode(codeType){
-            if(codeType == 'flex') return `
+            if(codeType == 'flex') {
+                if(this.type == 'lexical') {
+                    return `
 /*
 
     Here you can put your FLEX code.
@@ -49,6 +52,27 @@ int main(){
 	fclose(yyin);
 return 0;
 }`;
+                } else {
+                    return `
+/*
+
+    Here you can put your FLEX code.
+
+*/
+
+/*
+
+    The function main is required and cannot be changed
+
+*/
+
+
+
+int yywrap() {
+   return 1;
+}`;
+                }
+            } 
             if(codeType == 'bison') return `
 /*
 
@@ -91,7 +115,7 @@ return 0;
                 code: val,
                 type: this.codeType
             });
-        }
+        }, 
     }
 }
 

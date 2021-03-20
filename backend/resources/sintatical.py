@@ -10,9 +10,10 @@ class Sintatical(Resource):
             'lexicalAnalyser': data["lexicalAnalyser"],
             'sintaticalAnalyser': data["sintaticalAnalyser"],
             'code': data["code"],
-            'hash': uniqueId
+            'hash': uniqueId,
+            'input': data['input']
         }
-
+        # resp = requests.post('http://0.0.0.0:5000/sintatical', json=obj)
         resp = requests.post('http://0.0.0.0:80/sintatical', json=obj)
         # resp = requests.post('http://200.129.3.5:80/sintatical', json=obj)
         if resp.status_code > 202:

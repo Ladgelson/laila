@@ -9,9 +9,10 @@ class Lexical(Resource):
         obj = {
             'lexicalAnalyser': data["lexicalAnalyser"],
             'code': data["code"],
-            'hash': uniqueId
+            'hash': uniqueId,
+            'input': data['input']
         }
-
+        # resp = requests.post('http://0.0.0.0:5000/lexical', json=obj)
         resp = requests.post('http://0.0.0.0:80/lexical', json=obj)
         # resp = requests.post('http://200.129.3.5:80/lexical', json=obj)
         # if resp.status_code > 202:
