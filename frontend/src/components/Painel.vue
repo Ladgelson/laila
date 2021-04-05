@@ -96,7 +96,7 @@ int main(){
 return 0;
 }`;
             // console.log(code);
-            this.flexCode = code;
+            this.bisonCode = code;
         },
         onCmCodeChange(newCode) {
             this.result = newCode
@@ -122,8 +122,8 @@ return 0;
             this.result = "";
             try {
                 let ret;
-                this.handleFlexCode(this.flexCode)
                 if(this.id == 'lexical'){
+                    this.handleFlexCode(this.flexCode)
                     let objToSend = {
                         'lexicalAnalyser': this.flexCode,
                         'sintaticalAnalyser': this.bisonCode,
@@ -151,6 +151,7 @@ return 0;
                         'code': this.testCode,
                         'input': this.inputCode
                     }
+                    console.log(objToSend);
                     ret = await this.$rest.sintatical.create(objToSend)
                     if(ret["status"]){
                         this.result = ret.warning + '\n';

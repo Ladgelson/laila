@@ -17,7 +17,7 @@ function sendTestLexicalAnalyser(ind){
       data: {
         lexicalAnalyser: lexicalAnalyser,
         code: codeExample,
-        hash: ""+ind,
+        //hash: ""+ind,
         input: ""
       }
     })
@@ -39,7 +39,7 @@ function sendTestSintaticalAnalyser(ind){
         lexicalAnalyser: lexicalAnalyser,
         sintaticalAnalyser: sintaticalAnalyser,
         code: codeExample,
-        hash: ""+ind,
+        //hash: ""+ind,
         input: ""
       }
     })

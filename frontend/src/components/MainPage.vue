@@ -127,8 +127,8 @@ img {
 }
 
 .button-group button:hover{
-    background-color: #0FBBE6;
-    border-color: #0FBBE6;
+    background-color: #9DE7F9;
+    border-color: #9DE7F9;
     color: black;
     font-weight: bold;  
 }
