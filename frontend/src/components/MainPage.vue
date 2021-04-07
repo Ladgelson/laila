@@ -52,14 +52,18 @@
                             Link para formulário
                         </a>
                     </strong>
-                    <div class="imgGroup">
-                        <a href="https://www.linkedin.com/in/micaiasladgelson/">
-                            <img class="iconLink" src="./../assets/linkedin.svg"/>
-                        </a>
-                        <a class="github" href="https://github.com/Ladgelson">
-                            <img class="iconLink" src="./../assets/logotipo-do-github.svg"/>
-                        </a>
-                    </div>
+                    <ul class="social-icons">
+                        <li>
+                            <a href="https://github.com/Ladgelson">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/micaiasladgelson/">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -175,6 +179,54 @@ img {
 @media (max-width: 600px) {
     .logoImg {display: none}
     .imgProfile {display: none}
+}
+
+.social-icons {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+.social-icons li {
+  display: inline-block;
+  margin: 0.15em;
+  position: relative;
+  font-size: 1em;
+}
+.social-icons i {
+  color: black;
+  position: absolute;
+  top: 0.95em;
+  left: 0.96em;
+  transition: all 265ms ease-out;
+}
+.social-icons a {
+  display: inline-block;
+}
+.social-icons a:before {
+  transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
+  content: " ";
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  display: block;
+  background: linear-gradient(45deg, #9DE7F9, #9DE7F9);
+  transition: all 265ms ease-out;
+}
+.social-icons a:hover:before {
+  transform: scale(0);
+  transition: all 265ms ease-in;
+}
+.social-icons a:hover i {
+  transform: scale(2.2);
+  -ms-transform: scale(2.2);
+  -webkit-transform: scale(2.2);
+  color: #9DE7F9;
+  background: -webkit-linear-gradient(45deg, #9DE7F9, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 265ms ease-in;
 }
 
 </style>
