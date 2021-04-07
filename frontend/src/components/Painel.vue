@@ -8,7 +8,7 @@
         <div class="row">
             <CodeGeneration v-on:changeCode="addCode" v-show="ides[0]" class="col code" codeType="flex" :type="this.id"/>
             <CodeGeneration v-on:changeCode="addCode" v-show="ides[1]" class="col code" codeType="bison" :type="this.id"/>
-            <CodeGeneration v-on:changeCode="addCode" v-show="ides[2]" class="col code" codeType="test"/> 
+            <CodeGeneration v-on:changeCode="addCode" v-show="ides[2]" class="col code" codeType="test" :type="this.id"/> 
             <CodeGeneration v-on:changeCode="addCode" v-show="ides[3]" class="col code" codeType="entrada"/> 
         </div>
         <div v-if="load" class="d-flex justify-content-center">

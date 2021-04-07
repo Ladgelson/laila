@@ -9,8 +9,8 @@ DIGITO[0-9]
 RECEBE"="
 COMPARADORES"=="|"=>"|"<="|"!="|"<"|">"
 LETRAMINUSCULA[a-z]+
-LER"fodase>>"
-SAIDA"stdout<<"
+LER"entrada>>"
+SAIDA"saida<<"
 INT"int"
 FLOAT"float"
 DOUBLE"double"
@@ -83,11 +83,11 @@ INVALIDO .
     printf("STRING: %s\n", yytext);
 }
 {SAIDA} {
-    int a;
-    scanf("%d",&a);
-    printf("OPERADOR DE LEITURA: %d %s\n", a, yytext);
+    printf("OPERADOR DE SAIDA: %s\n", yytext);
 }
 {LER} {
+    int a;
+    scanf("%d",&a);
     printf("OPERADOR DE LEITURA: %s\n", yytext);
 }
 {NOMEVAR} {

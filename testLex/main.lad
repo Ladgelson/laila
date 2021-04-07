@@ -1,7 +1,7 @@
 ini
-stdout<< a
-fodase>> a
-string a = "micaias"
+saida<< a
+entrada>> a
+string a = "Fulano"
 if
 for 
 return 

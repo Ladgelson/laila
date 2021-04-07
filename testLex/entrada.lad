@@ -2,4 +2,9 @@
 	// teste comentario
 	lad_out("BEM VINDO A LINGUAGEM LAD, LAD ONDE? DE GELSON! ", lad_line);
 	lad_out("Quer saber se um número é primo? ", lad_line);
+	lad_int a = 1;
+	lad_while(a < 101){
+		lad_out("Teste de while: ", [i::]a ,lad_line);
+		a = a + 1;
+	}
 <<(U-u)

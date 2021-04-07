@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.20.0"
+    "axios": "^0.20.0",
+    "execution-time": "^1.4.1"
   },
   "devDependencies": {},
   "scripts": {
