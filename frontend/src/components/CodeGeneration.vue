@@ -34,7 +34,14 @@ export default {
         selectInitialCode(codeType){
             if(codeType == 'flex') {
                 if(this.type == 'lexical') {
-                    return `%{
+                    return `
+/*
+
+    Here you can put your FLEX code.
+
+*/
+
+%{
  
 %}
 
@@ -170,10 +177,17 @@ int main(){
 return 0;
 }`;
                 } else {
-                    return `%{
+                    return `
+%{
 #include <string.h>
 #include <stdio.h>
 %}
+
+/*
+
+    Here you can put your FLEX code.
+
+*/
 
 NUM [0-9]+\\.?[0-9]*
 VARS [a-zA-Z_]+[a-zA-Z0-9_]*
@@ -263,7 +277,14 @@ int yywrap() {
 }`;
                 }
             } 
-            if(codeType == 'bison') return `%{
+            if(codeType == 'bison') return `
+/*
+
+    Here you can put your Bison code.
+
+*/
+
+%{
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -1054,7 +1075,8 @@ return 0;
 }`;     
             if(codeType == 'test')
                 if(this.type == 'lexical'){
-                    return `ini
+                    return `
+ini
 saida<< a
 entrada>> a
 string a = "Fulano"
@@ -1066,7 +1088,8 @@ return
 fim
 `;
                 } else {
-                    return `(U-u)>>
+                    return `
+(U-u)>>
     // teste comentario
     lad_out("BEM VINDO A LINGUAGEM LAD, LAD ONDE? DE GELSON! ", lad_line);
     lad_out("Quer saber se um número é primo? ", lad_line);
