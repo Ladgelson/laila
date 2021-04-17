@@ -53,8 +53,18 @@ function sendTestSintaticalAnalyser(ind){
     });
 }
 
-console.log("Time/Executtion | SUM")
-for(let i=0; i < 1; ++i){
-  //sendTestLexicalAnalyser(i)
-  sendTestSintaticalAnalyser(i)
+function testGetLexicalCode(){
+  axios({
+    method: 'get',
+    url: env.dev+'/sintaticalCode'
+  })
+  .then((data)=> console.log(data))
 }
+
+testGetLexicalCode();
+
+// console.log("Time/Executtion | SUM")
+// for(let i=0; i < 1; ++i){
+//   //sendTestLexicalAnalyser(i)
+//   sendTestSintaticalAnalyser(i)
+// }
