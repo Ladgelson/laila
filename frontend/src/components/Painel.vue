@@ -2,8 +2,17 @@
     <div class="container-fluid">
         <Nav/>
         <div class="buttons row">
-            <ButtonGroup class="col-11" :type="id" v-on:changeIde="changeIde"/>
-            <button v-on:click="sendCode" type="submit" class="buttonSend col-1 btn btn-primary">Enviar</button>
+            <ButtonGroup class="col-8" :type="id" v-on:changeIde="changeIde"/>
+            <table class="col-4 table">
+                <thead>
+                    <tr>
+                        <button v-on:click="sendCode" type="submit" class="buttonSend btn btn-primary">
+                            Send
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </tr>
+                </thead>
+            </table>
         </div>
         <div class="row">
             <CodeGeneration v-on:changeCode="addCode" v-show="ides[0]" class="col code" codeType="flex" :type="this.id"/>
@@ -191,15 +200,15 @@ div.vue-codemirror.terminal.col {
 }
 
 .buttonSend {
-    background-color: #323031;
+    background-color: #9DE7F9;
     border-color: #323031;
-    color: white;
+    color: black;
 }
 
 .buttonSend:hover {
+    background-color: #323031;
     border-color: #323031;
-    background-color: #0FBBE6;
-    color: black;
+    color: white;
     font-weight: bold;
 }
 
@@ -218,5 +227,10 @@ div.vue-codemirror.terminal.col {
 .terminal:hover {
     background-color: #343A40;
     border-color: #343A40;
+}
+
+.table {
+    margin: 0;
+    margin-top: 2px;
 }
 </style>

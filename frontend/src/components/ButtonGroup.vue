@@ -10,7 +10,7 @@
             <a v-on:click="selectIde(2)" class="nav-link" v-bind:class="{active: ides[2]}" >Test Code</a>
         </li>
         <li class="nav-item">
-            <a v-on:click="selectIde(3)" class="nav-link" v-bind:class="{active: ides[3]}" >Entrada</a>
+            <a v-on:click="selectIde(3)" class="nav-link" v-bind:class="{active: ides[3]}" >Input</a>
         </li>
     </ul>
 </template>
@@ -55,6 +55,10 @@ export default {
 </script>
 
 <style>
+
+a {
+    cursor: pointer;
+}
 
 .nav-tabs .nav-link.active {
     background-color: #282A36;

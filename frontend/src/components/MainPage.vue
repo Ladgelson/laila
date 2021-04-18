@@ -12,7 +12,7 @@
                     <div class="title" >LAILA</div>
                 </div>
                 <div class="row align-items-center">
-                    <div class="standFor">Lexical And sIntaticaL Analyser - online</div>
+                    <div class="standFor">Lexical And Syntatic Analyser - online</div>
                 </div>
                 <div class="description-group">
                     <div class="row align-items-center">
@@ -30,7 +30,7 @@
                         <button class="btn btn-primary" type="submit">Lexical Analyser</button>
                     </router-link>
                     <router-link to="/painel/sintatical">
-                        <button class="btn btn-primary" type="submit">Lexical and Sintatical Analyser</button>
+                        <button class="btn btn-primary" type="submit">Lexical and Syntatic Analyser</button>
                     </router-link>
                 </div>
             </div>
@@ -42,14 +42,14 @@
                         Micaías Ladgelson
                     </div>
                     <div>
-                        Estudante no Instituto Federal do Ceará - Campus Aracati
+                        Student at Instituto Federal do Ceará
                     </div>
                     <div>
-                        Contato: micaiasladgelsondasilva@gmail.com
+                        E-mail: micaiasladgelsondasilva@gmail.com
                     </div>
                     <strong>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvpi2grfXYEViPZ19iECi2-fh4AD5VDIzCR0NoPgeeMQYqGg/viewform?usp=sf_link">
-                            Link para formulário
+                            Link to form
                         </a>
                     </strong>
                     <ul class="social-icons">
@@ -65,9 +65,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div>
-                <img class="imgProfile" alt="img" src="./../assets/ladgelson.jpg" />
             </div>
         </div>
     </div>
@@ -137,7 +134,7 @@ img {
 
 .button-group button:hover{
     background-color: #9DE7F9;
-    border-color: #9DE7F9;
+    border-color: #323031;
     color: black;
     font-weight: bold;  
 }
